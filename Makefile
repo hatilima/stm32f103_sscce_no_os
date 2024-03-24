@@ -13,11 +13,11 @@ OBJS=$(SRCS:.c=.o)
 CFLAGS	= 	-c -fno-common \
 			-ffunction-sections \
 			-fdata-sections \
-			-Os \
 			-g3 \
 			-mcpu=cortex-m3 \
 			-mthumb \
 			-Wall
+#removed optimization from CFLAGS -Os
 
 LDSCRIPT= stm32f103.ld
 
@@ -28,7 +28,7 @@ OCFLAGS	=	-Obinary
 ODFLAGS	=	-S
 
 
-.PHONY : clean all
+.PHONY : clean all flash_st #flash_ocd
 
 
 all: $(TARGET).bin  $(TARGET).list
@@ -62,3 +62,7 @@ clean:
 	-find . -name '*.out' | xargs rm
 	-find . -name '*.bin' | xargs rm
 	-find . -name '*.map' | xargs rm
+
+flash_st:
+	@echo "  Flashing firmware $(TARGET).bin to chip at address 0x8000000"
+	st-flash write $(TARGET).bin 0x8000000
