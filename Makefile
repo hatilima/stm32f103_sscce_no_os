@@ -17,7 +17,8 @@ CFLAGS	= 	-c -fno-common \
 			-mcpu=cortex-m3 \
 			-mthumb \
 			-Wall
-#removed optimization from CFLAGS -Os
+# removed optimization from CFLAGS -Os
+# just testing Linode server
 
 LDSCRIPT= stm32f103.ld
 
