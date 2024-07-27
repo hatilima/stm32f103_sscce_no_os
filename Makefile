@@ -19,6 +19,7 @@ CFLAGS	= 	-c -fno-common \
 			-Wall
 # removed optimization from CFLAGS -Os
 # just testing Linode server
+# another test
 
 LDSCRIPT= stm32f103.ld
 
