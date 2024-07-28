@@ -19,7 +19,6 @@ CFLAGS	= 	-c -fno-common \
 			-Wall
 # removed optimization from CFLAGS -Os
 # just testing Linode server
-# testing webhook
 
 LDSCRIPT= stm32f103.ld
 
