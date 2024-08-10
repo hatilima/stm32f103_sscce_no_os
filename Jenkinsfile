@@ -22,7 +22,6 @@ pipeline {
         stage('Integration Testing') {
             steps {
                 sh 'ls -a'
-                sh 'python3 --version'
                 echo 'Some openocd/st-flash and PyTest stuff'
             }
         }
