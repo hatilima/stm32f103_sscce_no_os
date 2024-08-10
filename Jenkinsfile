@@ -10,17 +10,18 @@ pipeline {
         }
         stage('Unit Testing') {
             steps {
-                echo 'Hello world!' 
+                sh 'ls -a'
             }
         }
         stage('Build') {
             steps {
                 sh 'arm-none-eabi-gcc --version'
+                sh 'make'
             }
         }
         stage('Integration Testing') {
             steps {
-                echo 'Hello world!' 
+                sh 'ls -a' 
             }
         }
         stage('Archiving') {
