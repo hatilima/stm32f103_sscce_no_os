@@ -23,7 +23,7 @@ CFLAGS	= 	-c -fno-common \
 
 LDSCRIPT= stm32f103.ld
 
-LDFLAGS	=	--gc-sections,-T$(LDSCRIPT),-no-startup,-nostdlib
+LDFLAGS	=	--gc-sections,-T$(LDSCRIPT),-nostdlib
 
 OCFLAGS	=	-Obinary
 
@@ -49,7 +49,7 @@ $(TARGET).bin: $(TARGET).elf
 
 
 main.elf: main.o startup.o
-	$(CC) -mcpu=cortex-m3 -mthumb -Wl,$(LDFLAGS),-o$(TARGET).elf,-Map,$(TARGET).map $(OBJS)
+	$(CC) -mcpu=cortex-m3 -mthumb -nostartfiles -Wl,$(LDFLAGS),-o$(TARGET).elf,-Map,$(TARGET).map $(OBJS)
 
 
 %.o: %.c
@@ -58,12 +58,12 @@ main.elf: main.o startup.o
 
 clean:
 	@echo "Removing files..."
-	-find . -name '*.o'   | xargs rm
-	-find . -name '*.elf' | xargs rm
-	-find . -name '*.lst' | xargs rm
-	-find . -name '*.out' | xargs rm
-	-find . -name '*.bin' | xargs rm
-	-find . -name '*.map' | xargs rm
+	-find . -name '*.o'   | xargs rm 2>/dev/null || true
+	-find . -name '*.elf' | xargs rm 2>/dev/null || true
+	-find . -name '*.lst' | xargs rm 2>/dev/null || true
+	-find . -name '*.out' | xargs rm 2>/dev/null || true
+	-find . -name '*.bin' | xargs rm 2>/dev/null || true
+	-find . -name '*.map' | xargs rm 2>/dev/null || true
 
 flash_st:
 	@echo "  Flashing firmware $(TARGET).bin to chip at address 0x8000000"
