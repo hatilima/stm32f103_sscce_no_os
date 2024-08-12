@@ -11,6 +11,9 @@ pipeline {
         stage('Unit Testing') {
             steps {
                 sh 'ls -a'
+                echo 'Some CMakeLists.txt GoogleTest/GoogleMock stuff'
+                sh 'make clean'
+                sh 'ls -a'
             }
         }
         stage('Build') {
